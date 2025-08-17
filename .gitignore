@@ -1,0 +1,28 @@
+# Build priečinky
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.moc
+*.qrc.dep
+
+# Qt špecifické dočasné súbory
+*.pro.user
+*.qmake.stash
+
+# Binárky
+*.o
+*.so
+*.dll
+*.exe
+*.a
+
+# Databázové súbory (ak generuješ lokálnu testovaciu DB)
+*.db
+*.sqlite
+
+# Logy a cache
+*.log
+*.cache
+
