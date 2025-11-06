@@ -36,3 +36,7 @@ target_include_directories(DComp PRIVATE
     ${SQLITE3_INCLUDE_DIRS}
 )
 
+
+target_include_directories(DComp PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
