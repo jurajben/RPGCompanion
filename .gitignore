@@ -7,6 +7,7 @@ Makefile
 *.moc
 *.qrc.dep
 __cmake_systeminformation/
+.clang-format
 
 # Qt špecifické dočasné súbory
 *.pro.user

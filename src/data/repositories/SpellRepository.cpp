@@ -1,4 +1,5 @@
 #include "SpellRepository.hpp"
+
 #include <stdexcept>
 
 static void check(int rc) {
@@ -9,20 +10,21 @@ static void check(int rc) {
 
 static Spell fillSpell(sqlite3_stmt* st) {
     Spell s;
-    s.id          = sqlite3_column_int64(st, 0);
-    s.name        = reinterpret_cast<const char*>(sqlite3_column_text(st, 1));
-    s.level       = sqlite3_column_int(st, 2);
-    s.school      = spellSchoolFromInt(sqlite3_column_int(st, 3));
-    s.cast_time   = reinterpret_cast<const char*>(sqlite3_column_text(st, 4));
-    s.range       = reinterpret_cast<const char*>(sqlite3_column_text(st, 5));
-    s.components  = reinterpret_cast<const char*>(sqlite3_column_text(st, 6));
+    s.id = sqlite3_column_int64(st, 0);
+    s.name = reinterpret_cast<const char*>(sqlite3_column_text(st, 1));
+    s.level = sqlite3_column_int(st, 2);
+    s.school = spellSchoolFromInt(sqlite3_column_int(st, 3));
+    s.cast_time = reinterpret_cast<const char*>(sqlite3_column_text(st, 4));
+    s.range = reinterpret_cast<const char*>(sqlite3_column_text(st, 5));
+    s.components = reinterpret_cast<const char*>(sqlite3_column_text(st, 6));
     s.description = reinterpret_cast<const char*>(sqlite3_column_text(st, 7));
     return s;
 }
 
 std::vector<Spell> SpellRepository::loadAll() const {
     const char* sql =
-        "SELECT id, name, level, school, cast_time, range, components, IFNULL(description,'') "
+        "SELECT id, name, level, school, cast_time, range, components, "
+        "IFNULL(description,'') "
         "FROM Spells ORDER BY level, name;";
     sqlite3_stmt* st = nullptr;
     check(sqlite3_prepare_v2(db_, sql, -1, &st, nullptr));
@@ -37,7 +39,8 @@ std::vector<Spell> SpellRepository::loadAll() const {
 
 std::vector<Spell> SpellRepository::loadBySchool(SpellSchool school) const {
     const char* sql =
-        "SELECT id, name, level, school, cast_time, range, components, IFNULL(description,'') "
+        "SELECT id, name, level, school, cast_time, range, components, "
+        "IFNULL(description,'') "
         "FROM Spells WHERE school = ? ORDER BY level, name;";
     sqlite3_stmt* st = nullptr;
     check(sqlite3_prepare_v2(db_, sql, -1, &st, nullptr));

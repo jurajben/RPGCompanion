@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+
 #include "SpellSchool.hpp"
 
 struct Spell {
@@ -12,4 +13,3 @@ struct Spell {
     std::string components;
     std::string description;
 };
-

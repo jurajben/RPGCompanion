@@ -1,15 +1,17 @@
 #pragma once
-#include <vector>
-#include "data/models/Spell.hpp"
 #include <sqlite3.h>
 
+#include <vector>
+
+#include "data/models/Spell.hpp"
+
 class SpellRepository {
-public:
+   public:
     explicit SpellRepository(sqlite3* db) : db_(db) {}
 
     std::vector<Spell> loadAll() const;
     std::vector<Spell> loadBySchool(SpellSchool school) const;
 
-private:
+   private:
     sqlite3* db_;
 };
