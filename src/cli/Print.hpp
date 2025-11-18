@@ -12,13 +12,13 @@ inline std::string truncate(const std::string& str, std::size_t maxLen) {
 }
 
 inline void printSpellsTable(const std::vector<Spell>& spells) {
-    std::cout << "LVL  | SCHOOL         | NAME                 | CAST TIME  | "
+    std::cout << "LVL | SCHOOL         | NAME                 | CAST TIME  | "
                  "RANGE    | COMPONENTS\n";
-    std::cout << "---- | -------------- | -------------------- | ---------- | "
+    std::cout << "--- | -------------- | -------------------- | ---------- | "
                  "-------- | ----------\n";
     for (const auto& s : spells) {
         std::cout.width(2);
-        std::cout << s.level << "   | ";
+        std::cout << std::right << s.level << "  | ";
         std::cout.width(14);
         std::cout << std::left << to_string(s.school) << " | ";
         std::cout.width(20);
