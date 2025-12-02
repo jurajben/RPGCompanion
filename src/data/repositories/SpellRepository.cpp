@@ -17,13 +17,14 @@ static Spell fillSpell(sqlite3_stmt* st) {
     s.cast_time = reinterpret_cast<const char*>(sqlite3_column_text(st, 4));
     s.range = reinterpret_cast<const char*>(sqlite3_column_text(st, 5));
     s.components = reinterpret_cast<const char*>(sqlite3_column_text(st, 6));
-    s.description = reinterpret_cast<const char*>(sqlite3_column_text(st, 7));
+    s.duration = reinterpret_cast<const char*>(sqlite3_column_text(st, 7));
+    s.description = reinterpret_cast<const char*>(sqlite3_column_text(st, 8));
     return s;
 }
 
 std::vector<Spell> SpellRepository::loadAll() const {
     const char* sql =
-        "SELECT id, name, level, school, cast_time, range, components, "
+        "SELECT id, name, level, school, cast_time, range, components, duration, "
         "IFNULL(description,'') "
         "FROM Spells ORDER BY level, name;";
     sqlite3_stmt* st = nullptr;
@@ -39,7 +40,7 @@ std::vector<Spell> SpellRepository::loadAll() const {
 
 std::vector<Spell> SpellRepository::loadBySchool(SpellSchool school) const {
     const char* sql =
-        "SELECT id, name, level, school, cast_time, range, components, "
+        "SELECT id, name, level, school, cast_time, range, components, duration, "
         "IFNULL(description,'') "
         "FROM Spells WHERE school = ? ORDER BY level, name;";
     sqlite3_stmt* st = nullptr;

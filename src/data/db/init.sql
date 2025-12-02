@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS "Spells"
     `cast_time` TEXT NOT NULL,
     `range` TEXT NOT NULL,
     `components` TEXT NOT NULL,
+    `duration` TEXT NOT NULL,
     `description` TEXT
 );
 -- SpellSchool: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation

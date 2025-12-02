@@ -11,5 +11,6 @@ struct Spell {
     std::string cast_time;
     std::string range;
     std::string components;
+    std::string duration;
     std::string description;
 };

@@ -13,9 +13,9 @@ inline std::string truncate(const std::string& str, std::size_t maxLen) {
 
 inline void printSpellsTable(const std::vector<Spell>& spells) {
     std::cout << "LVL | SCHOOL         | NAME                 | CAST TIME  | "
-                 "RANGE    | COMPONENTS\n";
+                 "RANGE    | COMPONENTS | DURATION      \n";
     std::cout << "--- | -------------- | -------------------- | ---------- | "
-                 "-------- | ----------\n";
+                 "-------- | ---------- | ------------- \n";
     for (const auto& s : spells) {
         std::cout.width(2);
         std::cout << std::right << s.level << "  | ";
@@ -28,6 +28,8 @@ inline void printSpellsTable(const std::vector<Spell>& spells) {
         std::cout.width(8);
         std::cout << s.range << " | ";
         std::cout.width(10);
-        std::cout << s.components << "\n";
+        std::cout << s.components << " | " ;
+        std::cout.width(13);
+        std::cout << s.duration << "\n";
     }
 }
